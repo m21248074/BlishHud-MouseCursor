@@ -16,6 +16,7 @@ using static Blish_HUD.GameService;
 using Manlaan.MouseCursor.Models;
 using Manlaan.MouseCursor.Controls;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 #region Extern
 internal enum CursorFlags
@@ -135,14 +136,20 @@ namespace Manlaan.MouseCursor
     {
         public enum ClipMode
         {
+            [Description("從不")]
             Never,
+            [Description("總是")]
             Always,
         }
         public enum ShowMode
         {
+            [Description("從不")]
             Never,
+            [Description("總是")]
             Always,
+            [Description("拖曳時")]
             Dragging,
+            [Description("未拖曳時")]
             NotDragging,
         }
 
@@ -202,14 +209,14 @@ namespace Manlaan.MouseCursor
             _settingMouseCursorSize = settings.DefineSetting("MouseCursorSize", 70, () => "Size");
             _settingMouseCursorOpacity = settings.DefineSetting("MouseCursorOpacity", 1.0f, () => "Opacity");
             _settingMouseCursorCameraDrag = settings.DefineSetting("MouseCursorCameraDrag", false, () => "Show When Camera Dragging", () => "Shows the cursor when you move the camera.");
-            _settingMouseCursorAboveBlish = settings.DefineSetting("MouseCursorAboveBlish", false, () => "Show Above Blish Windows");
+            _settingMouseCursorAboveBlish = settings.DefineSetting("MouseCursorAboveBlish", false, () => "顯示於 Blish 視窗上方");
             _settingMouseCursorShow = settings.DefineSetting("MouseCursorShow", ShowMode.Never, () => "");
             _settingMouseCursorShowCombat = settings.DefineSetting("MouseCursorShowCombat", ShowMode.Never, () => "");
             _settingMouseCursorClip = settings.DefineSetting("MouseCursorClip", ClipMode.Never, () => "");
             _settingMouseCursorClipCombat = settings.DefineSetting("MouseCursorClipCombat", ClipMode.Never, () => "");
-            _settingMouseCursorFreezeCursor = settings.DefineSetting("MouseCursorCenterAfterDrag", false, () => "Freeze Cursor After Dragging");
+            _settingMouseCursorFreezeCursor = settings.DefineSetting("MouseCursorCenterAfterDrag", false, () => "拖曳後凍結游標");
             _settingMouseCursorFreezeCursorPeriod = settings.DefineSetting("MouseCursorFreezePeriod", 2f, () => "", () => $"{_settingMouseCursorFreezeCursorPeriod.Value:0} ms");
-            _settingMouseCursorLogDebug = settings.DefineSetting("MouseCursorLogDebug", false, () => "Log Debug Messages");
+            _settingMouseCursorLogDebug = settings.DefineSetting("MouseCursorLogDebug", false, () => "記錄偵錯訊息");
 
             _settingMouseCursorImage.SettingChanged += UpdateMouseCursorSettingsCursorImageNColor;
             _settingMouseCursorColor.SettingChanged += UpdateMouseCursorSettingsCursorImageNColor;

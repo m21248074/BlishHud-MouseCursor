@@ -75,7 +75,7 @@ namespace Manlaan.MouseCursor.Views
                 AutoSizeHeight = false,
                 WrapText = false,
                 Parent = parentPanel,
-                Text = "Image: ",
+                Text = "圖片: ",
             };
             Dropdown cursorSelect = new Dropdown()
             {
@@ -106,7 +106,7 @@ namespace Manlaan.MouseCursor.Views
                 AutoSizeHeight = false,
                 WrapText = false,
                 Parent = parentPanel,
-                Text = "Size:",
+                Text = "大小:",
             };
             TrackBar sizeSlider = new TrackBar()
             {
@@ -127,7 +127,7 @@ namespace Manlaan.MouseCursor.Views
                 AutoSizeHeight = false,
                 WrapText = false,
                 Parent = parentPanel,
-                Text = "Opacity:",
+                Text = "透明度:",
             };
             TrackBar opacitySlider = new TrackBar()
             {
@@ -172,7 +172,7 @@ namespace Manlaan.MouseCursor.Views
                 AutoSizeHeight = false,
                 WrapText = false,
                 Parent = parentPanel,
-                Text = "Out of Combat",
+                Text = "戰鬥外",
                 Width = 100,
             };
             Label cursorClipShowHeaderCombatLabel = new Label()
@@ -181,7 +181,7 @@ namespace Manlaan.MouseCursor.Views
                 AutoSizeHeight = false,
                 WrapText = false,
                 Parent = parentPanel,
-                Text = "In Combat",
+                Text = "戰鬥中",
                 Width = 100,
             };
             prevContainer = cursorClipShowHeader0Label;
@@ -192,7 +192,7 @@ namespace Manlaan.MouseCursor.Views
                 AutoSizeHeight = false,
                 WrapText = false,
                 Parent = parentPanel,
-                Text = "Show Image:",
+                Text = "顯示圖片:",
                 Width = prevContainer.Width,
             };
             Dropdown cursorShowSelect = new Dropdown()
@@ -201,12 +201,19 @@ namespace Manlaan.MouseCursor.Views
                 Width = cursorClipShowHeaderLabel.Width,
                 Parent = parentPanel,
             };
-            foreach (var s in Enum.GetNames(typeof(Module.ShowMode))) cursorShowSelect.Items.Add(s);
-            cursorShowSelect.SelectedItem = Enum.GetName(typeof(Module.ShowMode), Module._settingMouseCursorShow.Value);
+            foreach (Module.ShowMode mode in Enum.GetValues(typeof(Module.ShowMode)))
+                cursorShowSelect.Items.Add(GetEnumDescription(mode));
+            cursorShowSelect.SelectedItem = GetEnumDescription(Module._settingMouseCursorShow.Value);
             cursorShowSelect.ValueChanged += delegate
             {
-                Enum.TryParse(cursorShowSelect.SelectedItem, out Module.ShowMode showMode);
-                Module._settingMouseCursorShow.Value = showMode;
+                foreach (Module.ShowMode mode in Enum.GetValues(typeof(Module.ShowMode)))
+                {
+                    if (GetEnumDescription(mode) == cursorShowSelect.SelectedItem)
+                    {
+                        Module._settingMouseCursorShow.Value = mode;
+                        break;
+                    }
+                }
             };
             Dropdown cursorShowCombatSelect = new Dropdown()
             {
@@ -214,12 +221,19 @@ namespace Manlaan.MouseCursor.Views
                 Width = cursorClipShowHeaderCombatLabel.Width,
                 Parent = parentPanel,
             };
-            foreach (var s in Enum.GetNames(typeof(Module.ShowMode))) cursorShowCombatSelect.Items.Add(s);
-            cursorShowCombatSelect.SelectedItem = Enum.GetName(typeof(Module.ShowMode), Module._settingMouseCursorShowCombat.Value);
+            foreach (Module.ShowMode mode in Enum.GetValues(typeof(Module.ShowMode)))
+                cursorShowCombatSelect.Items.Add(GetEnumDescription(mode));
+            cursorShowCombatSelect.SelectedItem = GetEnumDescription(Module._settingMouseCursorShowCombat.Value);
             cursorShowCombatSelect.ValueChanged += delegate
             {
-                Enum.TryParse(cursorShowCombatSelect.SelectedItem, out Module.ShowMode showMode);
-                Module._settingMouseCursorShowCombat.Value = showMode;
+                foreach (Module.ShowMode mode in Enum.GetValues(typeof(Module.ShowMode)))
+                {
+                    if (GetEnumDescription(mode) == cursorShowCombatSelect.SelectedItem)
+                    {
+                        Module._settingMouseCursorShowCombat.Value = mode;
+                        break;
+                    }
+                }
             };
             prevContainer = cursorShowLabel;
 
@@ -229,7 +243,7 @@ namespace Manlaan.MouseCursor.Views
                 AutoSizeHeight = false,
                 WrapText = false,
                 Parent = parentPanel,
-                Text = "Clip Cursor:",
+                Text = "限制游標:",
                 Width = prevContainer.Width,
             };
             Dropdown cursorClipSelect = new Dropdown()
@@ -238,12 +252,19 @@ namespace Manlaan.MouseCursor.Views
                 Width = cursorShowSelect.Width,
                 Parent = parentPanel,
             };
-            foreach (var s in Enum.GetNames(typeof(Module.ClipMode))) cursorClipSelect.Items.Add(s);
-            cursorClipSelect.SelectedItem = Enum.GetName(typeof(Module.ClipMode), Module._settingMouseCursorClip.Value);
+            foreach (Module.ClipMode mode in Enum.GetValues(typeof(Module.ClipMode)))
+                cursorClipSelect.Items.Add(GetEnumDescription(mode));
+            cursorClipSelect.SelectedItem = GetEnumDescription(Module._settingMouseCursorClip.Value);
             cursorClipSelect.ValueChanged += delegate
             {
-                Enum.TryParse(cursorClipSelect.SelectedItem, out Module.ClipMode clipMode);
-                Module._settingMouseCursorClip.Value = clipMode;
+                foreach (Module.ClipMode mode in Enum.GetValues(typeof(Module.ClipMode)))
+                {
+                    if (GetEnumDescription(mode) == cursorClipSelect.SelectedItem)
+                    {
+                        Module._settingMouseCursorClip.Value = mode;
+                        break;
+                    }
+                }
             };
             Dropdown cursorClipCombatSelect = new Dropdown()
             {
@@ -251,12 +272,19 @@ namespace Manlaan.MouseCursor.Views
                 Width = cursorShowCombatSelect.Width,
                 Parent = parentPanel,
             };
-            foreach (var s in Enum.GetNames(typeof(Module.ClipMode))) cursorClipCombatSelect.Items.Add(s);
-            cursorClipCombatSelect.SelectedItem = Enum.GetName(typeof(Module.ClipMode), Module._settingMouseCursorClipCombat.Value);
+            foreach (Module.ClipMode mode in Enum.GetValues(typeof(Module.ClipMode)))
+                cursorClipCombatSelect.Items.Add(GetEnumDescription(mode));
+            cursorClipCombatSelect.SelectedItem = GetEnumDescription(Module._settingMouseCursorClipCombat.Value);
             cursorClipCombatSelect.ValueChanged += delegate
             {
-                Enum.TryParse(cursorClipCombatSelect.SelectedItem, out Module.ClipMode clipMode);
-                Module._settingMouseCursorClipCombat.Value = clipMode;
+                foreach (Module.ClipMode mode in Enum.GetValues(typeof(Module.ClipMode)))
+                {
+                    if (GetEnumDescription(mode) == cursorClipCombatSelect.SelectedItem)
+                    {
+                        Module._settingMouseCursorClipCombat.Value = mode;
+                        break;
+                    }
+                }
             };
             prevContainer = cursorClipCombatSelect;
 
@@ -282,14 +310,14 @@ namespace Manlaan.MouseCursor.Views
                 MinValue = 1.0f,
                 MaxValue = 500f,
                 Value = Module._settingMouseCursorFreezeCursorPeriod.Value,
-                BasicTooltipText = $"{Module._settingMouseCursorFreezeCursorPeriod.Value:0} ms",
+                BasicTooltipText = $"{Module._settingMouseCursorFreezeCursorPeriod.Value:0} 毫秒",
                 Visible = Module._settingMouseCursorFreezeCursor.Value,
                 Parent = parentPanel,
             };
             freezeCursorPeriodSlider.ValueChanged += delegate
             {
                 Module._settingMouseCursorFreezeCursorPeriod.Value = freezeCursorPeriodSlider.Value;
-                freezeCursorPeriodSlider.BasicTooltipText = $"{freezeCursorPeriodSlider.Value:0} ms";
+                freezeCursorPeriodSlider.BasicTooltipText = $"{freezeCursorPeriodSlider.Value:0} 毫秒";
             };
             (settingFreezeCursorView as BoolSettingView).ValueChanged += delegate (object s, Blish_HUD.ValueEventArgs<bool> e)
             {
@@ -312,6 +340,13 @@ namespace Manlaan.MouseCursor.Views
             IView settingLogDebugView = SettingView.FromType(Module._settingMouseCursorLogDebug, _settingLogDebugContainer.Width);
             _settingLogDebugContainer.Show(settingLogDebugView);
             prevContainer = _settingLogDebugContainer;
+        }
+
+        private static string GetEnumDescription(Enum value)
+        {
+            var field = value.GetType().GetField(value.ToString());
+            var attribute = (System.ComponentModel.DescriptionAttribute)Attribute.GetCustomAttribute(field, typeof(System.ComponentModel.DescriptionAttribute));
+            return attribute == null ? value.ToString() : attribute.Description;
         }
     }
 }

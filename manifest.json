@@ -5,7 +5,7 @@
     "package": "MouseCursor.dll",
     "manifest_version": 1,
 
-    "description": "Displays a custom image under your mouse pointer.",
+    "description": "於滑鼠游標下方顯示自訂圖片。",
     "dependencies": {
         "bh.blishhud": ">=1.2.0"
     },
