@@ -1,6 +1,6 @@
 {
     "name": "Mouse Cursor",
-    "version": "2.3.3",
+    "version": "2.3.4",
     "namespace": "Manlaan.MouseCursor",
     "package": "MouseCursor.dll",
     "manifest_version": 1,
@@ -28,6 +28,7 @@
 }
 /*
     "changelog": {
+        "2.3.4": "2026-07-21: Fixed texture of circle 8"
         "2.3.3": "2026-03-03: Fixed typos and added extra debug log option to not log by default and only when explicitly needed"
         "2.3.2": "2026-03-02: Added customization options for when to show the highlight, added cursor clipping features and post-drag cursor freeze"
         "2.3.0": "2025-03-01: Upgraded to Blish 1.2.0, added action cam, left click drag support and loading, dialog, and character screen detection"
